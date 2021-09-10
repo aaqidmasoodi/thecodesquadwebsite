@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="margin-top: 6rem;" class="container">
+	<div class="d-flex flex-column">
+		<p class="m-auto">You're not the author of this post. </p>
+		<p class="m-auto">
+			<a href="{% url 'blog:main' %}">Back to Blogger</a>
+		</p>
+	</div>
+</div>
+
+{% endblock content %}

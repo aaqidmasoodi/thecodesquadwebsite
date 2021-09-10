@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style type="text/css">
+
+	@media (max-width: 768px) { 
+		.right-column{
+			margin-left: 0px;
+		}
+	}
+
+	@media (min-width: 768px) { 
+		.right-column{
+			margin-left: 20px;
+		}
+	}
+
+	.blog-post-container{
+		margin-bottom: 20px;
+		width: 100%;
+	}
+	.create-post-bar{
+		background-color: #fff;
+		margin-bottom:20px;
+	}
+
+	.left-column{
+		padding:0px;
+	}
+
+	.right-column{
+		padding:0px;
+	}
+	.lead{
+		font-size: 17px;
+	}
+
+	.blog-intro{
+		text-align: center;
+	}
+
+	.nothing-in-feed{
+		background-color: #ffffff;
+		max-width: 700px;
+		max-height: 10rem;
+		height: 100%;
+		width: 100%;
+		text-align: center;
+		padding: 4rem;
+		border: 1px solid #ececec;
+	}
+
+</style>
+
+<div class="container">
+	<div class="row">
+
+		<!-- blog feed -->
+		<div class="left-column col-lg-7 offset-lg-1">
+
+			<!-- Top 'create post' bar -->
+			<div class="d-lg-none mb-3">
+				<div class="card m-auto d-flex flex-column p-3">
+					<img class="img-fluid d-block m-auto pb-2" src="{% static 'thecodesquadlogo.png' %}" width="72" height="72">
+					<p class="lead blog-intro">Official Blogger for <code>TheCodeSquad</code> Club. You can view the posts from other members of the club and also share your own posts with others. <br> Posts you create are visible to all authenticated members.</p>
+					<p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p>
+				</div>
+			</div>
+			<!-- end Top 'create post' bar -->
+
+			<!-- Blog posts-->
+			{% if blog_posts %}
+			{% for post in blog_posts %}
+				<div class="blog-post-container">
+					{% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
+				</div>
+			{% endfor %}
+			{% else %}
+				<div class="blog-post-container nothing-in-feed">
+					<h3 class="text-muted nothing-in-feed-text">Nothing in blog feed.</h3>
+				</div>
+			{% endif %}
+			<!-- End Blog posts-->
+		</div>
+		<!-- end blog feed -->
+
+
+		<!-- Right 'create post' column  -->
+		<div class="right-column col-lg-3 d-lg-flex d-none flex-column">
+
+			<div class="card create-post-bar d-flex flex-column p-3">
+				<img class="img-fluid d-block m-auto pb-2" src="{% static 'thecodesquadlogo.png' %}" width="72" height="72">
+				<p class="lead blog-intro">Official Blogger for <code>TheCodeSquad</code> Club. You can view the posts from other members of the club and also share your own posts with others. <br> Posts you create are visible to all authenticated members.</p>
+				<p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p>
+			</div>
+		
+		</div>
+		<!-- end Right 'create post' column  -->
+
+	</div>
+</div>
+
+{% endblock content %}

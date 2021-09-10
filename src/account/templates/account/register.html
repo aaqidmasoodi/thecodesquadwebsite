@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<style type="text/css">
+  .form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  }
+
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="email"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="text"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .h3{
+    text-align: center;
+  }
+
+
+  .form-container{
+    background: #ffffff;
+    padding: 30px 20px;
+    border: 1px solid #ececec;
+
+
+  }
+
+</style>
+
+
+<form class="form-container form-signin" method="post">{% csrf_token %}
+
+    <div class="d-flex flex-column pb-3">
+    <img class="img-fluid mx-auto d-block" src="{% static 'thecodesquadlogo.png' %}" alt="thecodesquad logo" width="72" height="72">
+  </div>
+  <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
+
+  <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+
+  <input type="text" name="username" id="inputUsername" class="form-control" placeholder="CodeChef Username" required>
+  
+  <input type="password" name="password1" id="inputPassword1" class="form-control" placeholder="Password" required>
+
+  <input type="password" name="password2" id="inputPassword2" class="form-control" placeholder="Confirm Password" required>
+<hr>
+  <input type="text" name="firstname" id="inputFirstname" class="form-control" placeholder="First Name">
+
+   <input type="text" name="lastname" id="inputLastname" class="form-control" placeholder="Last Name">
+
+  <input type="text" name="contactnumber" id="inputContact" class="form-control" placeholder="Contact Number">
+
+
+<!-- <select class="form-control form-control-lg">
+  <option>Large select</option>
+</select>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+  <input type="text" name="department" id="inputDepartment" class="form-control" placeholder="Department">
+
+  <input type="text" name="branch" id="inputBranch" class="form-control" placeholder="Branch">
+
+  <input type="text" name="batch" id="inputBatch" class="form-control" placeholder="Batch">
+
+  <input type="text" name="graduationyear" id="inputGraduationyear" class="form-control" placeholder="Graduation Year">
+
+  
+
+  {% for field in registration_form %}
+      <p>
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+  {% endfor %}
+  {% if registration_form.non_field_errors %}
+    <div style="color: red">
+      <p>{{registration_form.non_field_errors}}</p>
+    </div>
+      
+  {% endif %}
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
+
+</form>
+
+
+{% endblock content %}
